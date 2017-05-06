@@ -30,8 +30,14 @@
 ```
 - ## post和get方式的区别
 ```
-get方式是将form表单中的数据以拼接到url的方式来传递给服务器端,因为url的长度有限，所以数据大小同样受限。
-post则是包裹在http包中，相较get方式更加安全。
+1.安全性
+    使用get时，form数据集被附加到form元素action属性所指定的URL后面 形式如url?key1=value1&key2=value2..,继而在浏览历史中通过可以看到数据集
+    使用post时，会把数据集包裹在请求的body中。
+2.数据长度限制
+    因URL长度限制为2083个字符，从而限制了get提交的数据长度。而post不用考虑这个问题
+3.用途
+    get用来从服务器上获取数据
+    post用来向服务器上传递数据
 ```
 - ## 在input中，name有什么作用
 ```
@@ -53,5 +59,6 @@ post则是包裹在http包中，相较get方式更加安全。
 - ## HTML表单的用法
 见第一题
 - ## 预览地址
+[预览地址](https://zhangjie1995.github.io/blog/form.html)
 
   
