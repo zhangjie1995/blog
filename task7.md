@@ -60,8 +60,9 @@ d：元素，伪元素
 * a:visited
 * a:hover
 * a:active
+满足从一般到特殊的顺序
 
-因为只有按照这种顺序，hover和active才是有效的。
+由于伪类选择器优先级一致，后面的a链接样式会覆盖前面的，所有我们需要按照特殊性排列，将最特殊的放到最后。
 ## 以下选择器分别是什么意思?
 ```
 #header{    
@@ -84,23 +85,29 @@ d：元素，伪元素
 <!-- id=header元素后代中鼠标悬浮a链接时的样式 -->
 #header .logo~p{
 }
-<!-- id=header元素后代中class=logo元素中的p元素 -->
+<!-- id=header元素后代中与class=logo元素同级的p元素 -->
 #header input[type='text']{
 }
 <!-- id=header元素后代中type属性为text的input元素 -->
 ```
-# div :first-child和div :first-of-type的作用和区别 （注意空格的作用）
-* xxx：first-child匹配xxx元素父元素的第一个子元素
-* xxx:first-of-type匹配xxx元素父元素的子元素中同类型元素中的第一个
+# div:first-child，div:first-of-type、div :first-child和div :first-of-type的作用和区别 （注意空格的作用）
+* div:first-child div元素父类元素后代中的第一个子元素，且必须为div元素。
+* div:first-of-child div元素父类元素后代中第一个div类型的元素
+* div :first-child div元素下的第一个子元素
+* div :first-of-type 选择div元素下的同类元素的第一个子元素(所有不同类型中第一个)。
+
+后两者选择的元素无需是div元素。
 # 
 ```
 <style>
 .item1:first-child{
   color: red;
 }
+<!-- 选择class=item1元素父元素后代中第一个子元素（且class=itm1） -->
 .item1:first-of-type{
   background: blue;
 }
+<!-- 选择class=item1元素父元素后代中第一个同类型元素。 -->
 </style>
  <div class="ct">
    <p class="item1">aa</p>
@@ -108,8 +115,6 @@ d：元素，伪元素
    <h3 class="item1">ccc</h3>
  </div>
 ```
-* 颜色：三个fisrt-child都将p标签元素字体改成红色。
-* 背景：第一个item1元素将p标签元素背景改成蓝色
-        后两个都将第一个h3标签元素背景改成蓝色
+
 
 
