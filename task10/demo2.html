@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.ct{
+			width: 600px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			margin: 0 auto;
+		}
+		.header{
+			color: white;
+			background-color: #009688;
+			padding: 5px 16px;
+		}
+		.form input[type='text'],.form textarea{
+			border: none;
+			border-bottom: 1px solid;
+			width: 100%;
+		}
+		.hobby{
+			float: left;
+			width: 50%;
+		}
+		.sex{
+			float: right;
+			width: 50%;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.form{
+			color: #757575;
+			padding: 16px 5px;
+		}
+		.submit{
+			background-color: #009688; 
+		}
+	</style>
+</head>
+<body>
+<div class="ct">
+	<div class="header">
+		<h2>信息收集表</h2>
+	</div>
+	<div class="form">
+		<form action="" method="post">
+			<label for="">姓名</label><br>
+			<input type="text"><br>
+			<label for="">QQ</label><br>
+			<input type="text"><br>
+			<label for="">要说的话</label><br>
+			<textarea name="" id="" cols="30" rows="10"></textarea><br>
+			<div class="clearfix">
+				<div class="hobby">
+					<input type="checkbox" name="hobby">
+					<label for="">Milk</label><br>
+					<input type="checkbox" name="hobby">
+					<label for="">Sugar</label><br>
+					<input type="checkbox" name="hobby">
+					<label for="">Lemon</label>
+				</div>
+				<div class="sex">
+					<input type="radio" name="sex">
+					<label for="">Male</label><br>
+					<input type="radio" name="sex">
+					<label for="">Female</label>
+				</div>
+			</div>
+			<input type="submit" value="提交" class="submit">
+		</form>
+	</div>
+</div>
+</body>
+</html>
