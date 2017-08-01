@@ -28,8 +28,8 @@
 
 
 # z-index 有什么作用? 如何使用?
-* z-index可以设置盒模型元素的Z轴顺序，数字越大，元素越接近观察者。
-* 设置整数数字，数字越大，表示该盒模型元素越接近观察者。
+* z-index可以设置盒模型元素的Z轴顺序，数字越大，元素越接近观察者。z-indx仅对有定位元素生效。
+* 设置整数数字，数字越大，表示该盒模型元素越接近观察者（同级元素）。分辨出层叠元素在Z轴上的渲染顺序的简单方法是将它们想象成一系列的版本号，子元素是其父元素版本号之下的次要版本。
 # position:relative和负margin都可以使元素位置发生偏移?二者有什么区别
 区别是position:relative虽然使元素位置发生偏移，但元素的实际位置并没有发生变化。
 # BFC 是什么？如何生成 BFC？BFC 有什么作用？举例说明
@@ -46,7 +46,8 @@ overflow不为visible
   3.  防止垂直margin重叠。   
   ![03](http://upload-images.jianshu.io/upload_images/249906-234f8b6b501b2c3a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   
 # 在什么场景下会出现外边距合并？如何合并？如何不让相邻元素外边距合并？给个父子外边距合并的范例
-*  当两个垂直外边距相遇时，它们将形成一个外边距，高度为较大者。
+*  处于同一个BFC的相邻元素垂直外边距会合并；块级元素父元素和它的第一个.最后一个子元素会合并；空的块级元素。
+*  合并规则：取偏移量最大的值。
 *  将相邻元素放在不同的BFC中
 * 父子外边距合并范例：
  ![04](http://upload-images.jianshu.io/upload_images/249906-e0276e1c6896d505.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

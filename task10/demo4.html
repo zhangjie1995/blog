@@ -7,29 +7,26 @@
 		.ct{
 			background-color: #f1f1f1;
 			margin: 3px auto;
-			width: 600px;
-			
+			width: 600px;	
 			border-radius: 3px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 		}
 		.navi a{		
 			text-decoration: none;
 			color: #000;
 			display: block;
+			padding: 8px 16px;
 		}
 		.navi li{
 			float: left;
 			list-style: none;
-			width: 72px;
-			height: 42px;
-			text-align: center;
-			line-height: 42px;
 		}
-		.navi li:hover{
+		.navi a:hover{
 			background-color: #C8C8C8;
 		}
 		.more:hover .hidden{
 			display: block;
-			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			
 		}
 		.navi:after{
 			content: '';
@@ -40,9 +37,14 @@
 			padding: 0;
 		}
 		.hidden{
+			position: absolute;
 			background-color: white;
 			display: none;
+			width: 160px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+			text-align: left;
 		}
+
 		.hidden a:hover{
 			background: #C8C8C8;
 		}
@@ -56,9 +58,9 @@
 			<li class="more">
 				<a href="">更多</a>
 				<div class="hidden">
-					<a href="">GitHub</a>
-					<a href="">boke</a>
-					<a href="">zhihu</a>
+					<a href=""> GitHub</a>
+					<a href=""> boke</a>
+					<a href=""> zhihu</a>
 				</div>
 			</li>
 		</ul>
