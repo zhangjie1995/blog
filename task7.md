@@ -92,7 +92,7 @@ d：元素，伪元素
 ```
 # div:first-child，div:first-of-type、div :first-child和div :first-of-type的作用和区别 （注意空格的作用）
 * div:first-child div元素父类元素后代中的第一个子元素，且必须为div元素。
-* div:first-of-child div元素父类元素后代中第一个div类型的元素
+* div:first-of-type div元素父类元素后代中第一个div类型的元素
 * div :first-child div元素下的第一个子元素
 * div :first-of-type 选择div元素下的同类元素的第一个子元素(所有不同类型中第一个)。
 
