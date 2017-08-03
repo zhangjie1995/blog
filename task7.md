@@ -85,7 +85,7 @@ d：元素，伪元素
 <!-- id=header元素后代中鼠标悬浮a链接时的样式 -->
 #header .logo~p{
 }
-<!-- id=header元素后代中与'class=logo'元素之后的同级元素p标签 -->
+<!-- id=header元素后代中'class=logo'元素之后的同级元素p标签 -->
 #header input[type='text']{
 }
 <!-- id=header元素后代中type属性为text的input元素 -->
