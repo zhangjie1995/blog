@@ -60,7 +60,7 @@ d：元素，伪元素
 * a:visited
 * a:hover
 * a:active
-满足从一般到特殊的顺序
+满足从一般到特殊的顺序,遵循LVHY(爱恨原则love/hate)的先后顺序，即:link,:visited,:hover,:active
 
 由于伪类选择器优先级一致，后面的a链接样式会覆盖前面的，所有我们需要按照特殊性排列，将最特殊的放到最后。
 ## 以下选择器分别是什么意思?
@@ -85,7 +85,7 @@ d：元素，伪元素
 <!-- id=header元素后代中鼠标悬浮a链接时的样式 -->
 #header .logo~p{
 }
-<!-- id=header元素后代中与class=logo元素同级的p元素 -->
+<!-- id=header元素后代中与'class=logo'元素之后的同级元素p标签 -->
 #header input[type='text']{
 }
 <!-- id=header元素后代中type属性为text的input元素 -->
