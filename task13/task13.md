@@ -6,27 +6,14 @@
 # 垂直居中有几种实现方式，给出代码范例
 1. 上下padding
 ```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style>
-		.ct {
-			width: 300px;
-			border:1px solid ;
-			padding: 100px;
-		}
-	</style>
-</head>
-<body>
-<div class="ct">
-	<span>垂直</span>
-</div>	
-</body>
-</html>
+.ct {
+	width: 300px;
+	border:1px solid ;
+	padding: 100px;
+}
 ```
-2. 使用伪元素
+2. vertical-align(作用于行内元素和表格元素)
+* 使用伪元素
 ```
 .ct:before {
 	height: 100%;
@@ -35,7 +22,7 @@
 	vertical-align: middle;
 }
 ```
-3. display为table-cell
+ * display为table-cell
 ```
 .ct {
 	display: table-cell;
@@ -44,4 +31,20 @@
 	border: 1px solid;
 	vertical-align: middle;
 	}
+```
+3. 高度固定，使用绝对定位垂直居中
+```
+.ct {
+	position: absolute;
+	left: 50%;
+	height: 50%;
+	transform: translate(-50%,-50%);
+}
+```
+4. 使用line-height
+```
+.ct{
+	height: 300px; 
+	line-height: 300px;
+}
 ```
