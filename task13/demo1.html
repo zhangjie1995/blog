@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.ct,.bubble,.bubble2 {
+			width: 100px;
+			height: 50px;
+			border: 1px solid #ccc;
+			position: relative;
+			margin: 20px;
+		}
+		.ct:before {
+			content: "";		
+			border: 10px solid #fff;
+			border-bottom: 10px solid #ccc;
+			display: inline-block;
+			position: absolute;
+			top: -20px;
+			left: 10px;
+		}
+		.bubble:before {
+			position: absolute;
+			content: "";
+			display: inline-block;
+			border: 10px solid #fff;
+			border-top: 10px solid red;
+			border-right: 10px solid red;
+			left: 80px;
+		}
+		.bubble2:before {
+			position: absolute;
+			content: "";		
+			width: 10px;
+			height: 10px;
+			display: inline-block;
+			background: #fff;
+			border-top: 1px solid #ccc;
+			border-right: 1px solid #ccc;
+			transform: rotateZ(-45deg);
+			top: -6px;
+			left: 6px;
+		}
+	</style>
+</head>
+<body>
+<div class="ct">
+	
+</div>
+<div class="bubble">
+	
+</div>
+<div class="bubble2">
+	
+</div>
+
+</body>
+</html>
