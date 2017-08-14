@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.content {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.navigation {
+
+			background: black;
+		}
+/*		.logo{
+			border: 1px solid red;
+		}*/
+		.navigation-content {
+		
+			padding: 10px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.content a {
+			text-decoration: none;
+			color: #fff;
+		}
+/*		.navi {
+			border: 1px solid red;
+		}*/
+		.navi>li {
+			float: left;
+			margin-left: 10px;
+			list-style: none;
+		}
+		.navi a:hover {
+			color: yellow;
+		}
+		#header {
+			position: relative;
+			color: #fff;
+			height: 600px;
+			text-align: center;
+			background: url("http://www.csgo.com.cn/hd/1703/countDown/images/demo/slides01.jpg") center ;
+			
+		}
+		.down-link a {
+			padding: 10px;
+			text-decoration: none;
+			color: #fff;
+			font-weight: bold;
+			background: #fed136;
+			border-radius: 3px;
+		}
+		.header-content {
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%,-50%);
+			display: inline-block;
+		}
+		.test-camp {
+			text-align: center;
+		}
+		.leader {
+			margin-left: -30px;
+			padding-left: 0;
+		}
+		.leader li{
+			float: left;
+			width: 313px;
+			margin-left: 30px;
+			list-style: none;
+
+		}
+		.weapons {
+			text-align: center;
+			background: #ccc;
+		}
+		.weapons-img {
+			padding-left: 0;
+			margin-left: -30px;
+		}
+		.weapons-img li {
+			float: left;
+			margin-left: 30px;
+			margin-top: 30px;
+			list-style: none;
+			width: 313px;
+			box-shadow: 0 0 3px #fff;
+		}
+		.weapons-img li img {
+			width: 313px;
+		}
+		.weapons-img-text {
+			background: #fff;
+			padding: 10px;
+		}
+		.rank {
+			text-align: center;
+		}
+		.rank-list {
+			list-style: none;
+			padding: 0;
+		}
+		.rank-list li {
+			display: flex;
+			align-items: center;
+		}
+		.rank-link {
+			margin: 0 auto;
+			border: 1px solid #ccc;
+			width: 1px;
+			height: 60px;
+		}
+		.rank-img img {
+			width: 150px;
+			border-radius: 75px;
+		}
+		.odd-rank {
+			margin-right: 425px;
+			border: 1px solid;
+			justify-content: flex-end;
+		}
+		.even-rank {
+			margin-left: 425px;
+			justify-content: flex-start;
+		}
+		.proplayer {
+			background: #ccc;
+		}
+		.player-list {
+			list-style: none;
+			margin-left: -30px;
+			text-align: center;
+			padding-left: 0;
+		}
+		.player-list li {
+			float: left;
+			margin-left: 30px;
+			margin-top: 30px;
+			list-style: none;
+			width: 313px;
+			box-shadow: 0 0 3px #fff;
+		}
+		.player-img {
+			margin: 0 auto;
+			width: 200px;
+			height: 200px;
+			border-radius: 100px;
+			background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTceHjPWDK1-ALqRsfSQoMKxF_kRjQ99d6xPQd3ds0TLmbH4wtP4w) center center ;
+		}
+		.contant {
+			text-align: center;
+		}
+		.contant-self {
+			flex-grow: 1;
+			margin-right: 70px;
+		}
+		.message {
+			flex-grow: 1;
+		}
+		.contant-self input[type='text'] {
+			width: 100%;
+			height: 30px;
+			margin-bottom: 20px;
+			padding: 10px;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+		}
+		.contant-form {
+			display: flex;
+			justify-content: space-between;
+		}
+		.message textarea{
+			width: 100%;
+			margin-left: -20px;
+			padding: 10px;
+			height: 178px;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+		}
+		.submit {
+			padding: 20px 40px;
+			color: #fff;
+			background: #fed136;
+			font-size: 18px;
+			border-color: #fed136;
+			font-weight: 700;
+		}
+		#footer {
+			display: flex;
+			justify-content: space-between;
+		}
+		.quicklink a {
+			text-decoration: none;
+			color: #fed136;
+		}
+		.quicklink a:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+<div class="navigation">
+	<div class="content navigation-content">
+		<div class="logo"><a href="#">Counter-Strike</a></div>	
+		<ul class="navi">
+			<li><a href="">新兵训练营</a></li>
+			<li><a href="">游戏特色</a></li>
+			<li><a href="">数据库</a></li>
+			<li><a href="">资料站</a></li>
+		</ul>
+	</div>
+</div>
+<div id="header">
+	<div class="content header-content">
+		<h2>欢迎来到反恐精英！</h3>
+		<h1>IT'S NICE TO MEET YOU</h2>
+		<div class="down-link">
+			<a href="#">TELL ME MORE</a>
+		</div>
+	</div>
+</div>
+<div id="content">
+	<div class="test-camp  content">
+		<h2>新手训练营</h2>
+		<ul class="leader clearfix">
+			<li>
+				<i>xx</i>
+				<p>登录注册</p>
+				<p>* 国际服玩家及Dota2玩家无需注册直接登录</p>
+			</li>
+			<li>
+				<i>xx</i>
+				<p>登录注册</p>
+				<p>* 国际服玩家及Dota2玩家无需注册直接登录</p>
+			</li>
+			<li>
+				<i>xx</i>
+				<p>登录注册</p>
+				<p>* 国际服玩家及Dota2玩家无需注册直接登录</p>
+			</li>
+		</ul>
+	</div>
+	<div class="weapons">
+		<div class="content">
+			<h2>weapon</h2>
+			<p>武器介绍</p>
+			<ul class="weapons-img  clearfix">
+				<li>
+					<img src="http://www.csgo.com.cn/hd/1610/info/images/demo/arms_pic21.png" alt="">
+					<div class="weapons-img-text">
+						<p>手枪</p>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.csgo.com.cn/hd/1610/info/images/demo/arms_pic21.png" alt="">
+					<div class="weapons-img-text">
+						<p>手枪</p>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.csgo.com.cn/hd/1610/info/images/demo/arms_pic21.png" alt="">
+					<div class="weapons-img-text">
+						<p>手枪</p>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.csgo.com.cn/hd/1610/info/images/demo/arms_pic21.png" alt="">
+					<div class="weapons-img-text">
+						<p>手枪</p>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.csgo.com.cn/hd/1610/info/images/demo/arms_pic21.png" alt="">
+					<div class="weapons-img-text">
+						<p>手枪</p>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.csgo.com.cn/hd/1610/info/images/demo/arms_pic21.png" alt="">
+					<div class="weapons-img-text">
+						<p>手枪</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="rank content clearfix">
+		<h3>军衔</h3>
+		<p>军衔等级一览</p>
+		<ul class="rank-list">
+			<li class="odd-rank">
+				<div class="rank-text ">白银 一 Ixxxxxxxxxxxxxxxx</div>
+				<div class="rank-img"><img src="http://www.csgo.com.cn/data/images/badge1.png" alt=""></div>
+			</li>
+			<div class="rank-link"></div>
+			<li class="even-rank">
+				<div class="rank-img"><img src="http://www.csgo.com.cn/data/images/badge1.png" alt=""></div>
+				<div class="rank-text">白银 一 Ixxxxxxxxxxxxxxxx</div>
+				
+			</li>
+			<div class="rank-link"></div>
+			<li class="odd-rank">
+				<div class="rank-text">白银 一 Ixxxxxxxxxxxxxxxx</div>
+				<div class="rank-img"><img src="http://www.csgo.com.cn/data/images/badge1.png" alt=""></div>
+			</li>
+			<div class="rank-link"></div>
+		</ul>
+	</div>
+	<div class="proplayer">
+		<div class="content">
+			<ul class="player-list clearfix">
+				<li>
+					<div class="player-img"></div>
+					<p>shox</p>
+					<p>g2战队</p>
+					<i>xx</i>
+					<i>ss</i>
+					<i>ff</i>
+				</li>
+				<li>
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTceHjPWDK1-ALqRsfSQoMKxF_kRjQ99d6xPQd3ds0TLmbH4wtP4w" alt="">
+					<p>shox</p>
+					<p>g2战队</p>
+					<i></i>
+					<i></i>
+					<i></i>
+				</li>
+				<li>
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTceHjPWDK1-ALqRsfSQoMKxF_kRjQ99d6xPQd3ds0TLmbH4wtP4w" alt="">
+					<p>shox</p>
+					<p>g2战队</p>
+					<i></i>
+					<i></i>
+					<i></i>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+	<div class="contant">
+			<div class="content">
+				<h1>contant us</h1>
+				<p>Lorem ipsum dolor sit amet consectetur.</p>
+				<form action="" method="post">
+					<div class="contant-form">
+						<div class="contant-self">
+							<input type="text" placeholder="your name" name="name"><br>
+							<input type="text" placeholder="your email" name="email"><br>
+							<input type="text" placeholder="your phone" name="phone"><br>
+						</div>
+						<div class="message">
+							<textarea name="message" id="" placeholder="message"></textarea>
+						</div>
+					</div>
+					<input type="submit" value="tijiao" class="submit">
+				</form>
+			</div>
+		</div>
+</div>
+<div id="footer" class="content">
+	<div class="logo-wanmei">
+		<img src="http://www.dota2.com.cn/public/images/logo-wanmei.png" alt="">
+	</div>
+	<div class="quicklink">
+		<a href="#">公司介绍</a>
+		<a href="#">联系我们</a>
+	</div>
+</div>
+</body>
+</html>
