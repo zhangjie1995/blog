@@ -1,0 +1,21 @@
+<script>
+function friendlyDate(time){
+	var nowDate = new Date();
+
+	var totalSec= Math.floor((nowDate.getTime() - time)/1000);
+	if(totalSec<60){
+		return '刚刚';
+	}else if(totalSec<60*60){
+		return '3分钟前';
+	}else if(totalSec<60*60*24){
+		return '8小时前';
+	}else if(totalSec<60*60*24*30){
+		return '3天前';
+	}else if(totalSec<60*60*24*365){
+		return '2个月前';
+	}else{
+		return '1年前';
+	}
+
+}
+</script>
