@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.ct{
+			display: none;
+		}
+		.cover{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: #000;
+			opacity: 0.4;
+			z-index: 99;
+		}
+		.pane{
+			position: fixed;
+			width: 500px;
+			height: 200px;
+			left: 50%;
+			top:50%;
+			background: white;
+			border-radius: 3px;
+			transform: translate(-50%,-50%);
+			z-index: 100;
+		}
+		.show{
+			display: block;
+		}
+		.pane>h3{
+			border-bottom: 1px solid #ccc;
+			margin: 0;
+		}
+		.pane .close{
+			float: right;
+			text-decoration: none;
+			color: black;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn">点我</button>
+	<div class="ct">
+		<div class="cover"></div>
+		<div class="pane">
+			<a href="#" class="close">X</a>
+			<h3>我是标题</h3>
+			<p>我是内容</p>
+		</div>
+	</div>
+	<script>
+		var pane = document.querySelector('.pane');
+		var btn = document.querySelector('.btn');
+		var close = document.querySelector('.close');
+		var ct = document.querySelector('.ct');
+		btn.addEventListener('click',function(e){
+			e.stopPropagation();
+			ct.classList.add('show');
+		})
+		pane.addEventListener('click',function(e){
+			e.stopPropagation();
+		})
+		close.addEventListener('click',function(e){
+			ct.classList.remove('show');
+		})
+
+		document.body.addEventListener('click',function(){
+			ct.classList.remove('show');
+		})
+	</script>
+</body>
+</html>
