@@ -5,11 +5,11 @@
 </ul>
 <div class="img-preview"></div>
 <script>
-	document.querySelectorAll('.ct li').forEach(function(node){
-		node.addEventListener('mouseenter',function(){
-			console.log(this.getAttribute('data-img'));
-			document.querySelector('.img-preview').setAttribute('data-img',this.getAttribute('data-img'));
-		})
-	})
+var li = document.querySelectorAll('.ct>li')
+var lis =[]
+li.forEach(function(node){
+	lis.push(node);
+})
+console.log(lis.length)
 
 </script>
