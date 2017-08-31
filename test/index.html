@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #new_list li{
+      height: 50px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      list-style: none;
+    }
+    #load_more {
+      width: 80px;
+      height: 40px;
+      line-height: 40px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      display: block;
+      margin: 0 auto;
+      text-decoration: none;
+      color: #000;
+      background: #ccc;
+    }
+    #load_more:hover{
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <ul id="new_list"></ul>
+  <a href="#" id="load_more">加载更多</a>
+  
+</body>
+<script>
+  var btn = document.querySelector('#load_more');
+  var ct = document.querySelector('#new_list');
+  var index = 0
+  var isArrive = true
+  btn.addEventListener('click',function(){
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200||xhr.status === 304){
+          var result = JSON.parse(xhr.responseText);
+          console.log(result)
+          var fragment = document.createDocumentFragment()
+          for(var i=0;i<result.length;i++){
+            var node = document.createElement('li')
+            node.innerText = result[i]
+            fragment.appendChild(node)
+          }
+          ct.appendChild(fragment)
+          index +=5
+        }else{
+          alert('出错了')
+        }
+        isArrive = true
+      }
+      
+    }
+
+    xhr.open('GET','/loadMore?index='+index+'&length=5',true)
+    xhr.send()
+    isArrive = false
+  })
+</script>
+</html>
