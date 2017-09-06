@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input id="b-input" type="text">
+
+</body>
+<script>
+  $('#b-input').addEventListener('input',function(){
+    console.log($('#b-input').value)
+    window.parent.postMessage(this.vale,'*')
+  })
+  window.addEventListener('message',function(e){
+    console.log('b  '+e.data)
+    $('#b-input').value = e.data
+  })
+  function $(id){
+    return document.querySelector(id)
+  }
+</script>
+</html>

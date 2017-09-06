@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    ul,li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .navi {
+      display: flex;
+
+    }
+    .navi>li{
+      padding: 20px;
+      border: 1px solid #ccc;
+      flex-grow: 1;
+      text-align: center;
+    }
+    .content {
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      display: flex;
+      width: 300%;
+    }
+    .navi .selected{
+      background: #ccc;
+    }
+    .content>li{
+      flex-grow: 1;
+      height: 300px;
+    }
+    .wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      width: 100%;
+      height: 300px;
+    }
+    .content>li:nth-child(1){
+      background: green;
+    }
+    .content>li:nth-child(2){
+      background: red;
+    }
+    .content>li:nth-child(3){
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+<div class="ct">
+  <ul class="navi">
+    <li class="selected">tab1</li>
+    <li>tab2</li>
+    <li>tab3</li>
+  </ul>
+  <div class="wrap">
+    <ul class="content">
+      <li>内容1</li>
+      <li>内容2</li>
+      <li>内容3</li>
+    </ul>
+  </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var $tabs = $('.navi>li')
+  var $cons = $('.content')
+  var width = $('.wrap').width()
+  $tabs.on('click',function(){
+    $index = $(this).index()
+    $tabs.eq($index).addClass('selected')
+    $tabs.eq($index).siblings().removeClass('selected')
+    console.log(width)
+    $cons.animate({left:-$index*width})
+  })
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    ul,li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .navi {
+      display: flex;
+
+    }
+    .navi>li{
+      padding: 20px;
+      border: 1px solid #ccc;
+      flex-grow: 1;
+      text-align: center;
+    }
+    .content {
+      position: absolute;
+      top: 68px;
+      
+      z-index: -1;
+    }
+    .navi .selected{
+      background: #ccc;
+    }
+    .content>li{
+      width: 100%;
+      height: 300px;
+    }
+    .content .selected {
+      display: block;
+    }
+    .wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+<div class="ct">
+  <ul class="navi">
+    <li class="selected">tab1</li>
+    <li>tab2</li>
+    <li>tab3</li>
+  </ul>
+  <div class="wrap">
+    <ul class="content">
+      <li class="selected">内容1</li>
+      <li>内容2</li>
+      <li>内容3</li>
+    </ul>
+  </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var $tabs = $('.navi>li')
+  var $cons = $('.content')
+  $tabs.on('click',function(){
+    $index = $(this).index()
+    $tabs.eq($index).addClass('selected')
+    $tabs.eq($index).siblings().removeClass('selected')
+    $cons.animate({top:68-300*$index})
+  })
+</script>
+</html>

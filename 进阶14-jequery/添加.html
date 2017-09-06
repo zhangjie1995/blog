@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    .goods {
+      list-style: none;
+      width: 1160px;
+    }
+    .goods>li {
+      position: relative;
+      float: left;
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ccc;
+      margin: 20px;
+      padding: 20px;
+    }
+    .goods>li img{
+      display: block;
+      max-width: 300px;
+      height: 200px;
+      margin: 0 auto;
+    }
+    .buyBtn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0.7;
+      display: none;
+    }
+    .buyBtn>a {
+      color: red;
+      padding: 10px;
+      background: #fff;
+      position:  absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      display: block;
+      border: 1px solid red;
+
+    }
+    .appendBtn{
+      color: red;
+      padding: 5px;
+      border: 1px solid red;
+      margin: 20px;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <ul class="goods clearfix">
+    <li>
+      <img src="http://image.daoxila.com/article/2011-03/201103221541114701.jpg" alt="">
+      <p>xxxxxx</p>
+      <p>$899.00</p>
+      <div class="buyBtn">
+        <a href="#">立即购买</a>
+      </div>
+    </li>
+     <li>
+      <img src="http://image.daoxila.com/article/2011-03/201103221541114701.jpg" alt="">
+      <p>xxxxxx</p>
+      <p>$899.00</p>
+      <div class="buyBtn">
+        <a href="#">立即购买</a>
+      </div>
+    </li>
+     <li>
+      <img src="http://image.daoxila.com/article/2011-03/201103221541114701.jpg" alt="">
+      <p>xxxxxx</p>
+      <p>$899.00</p>
+      <div class="buyBtn">
+        <a href="#">立即购买</a>
+      </div>
+    </li>
+  </ul>
+  <a class='appendBtn' href="#">添加</a>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var products = [
+  {
+    img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+    name: '珂兰 黄金手 猴哥款',
+    price: '￥405.00'
+  },{
+    img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+    name: '珂兰 黄金转运珠 猴哥款',
+    price: '￥100.00'
+  },{
+    img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+    name: '珂兰 黄金手链 3D猴哥款',
+    price: '￥45.00'
+  }
+];
+  $('.goods').on('mouseenter','li',function(){
+    $('.buyBtn').eq($(this).index()).show();
+  })
+  $('.goods').on('mouseleave','li',function(){
+    $('.buyBtn').eq($(this).index()).hide();
+  })
+  $('.appendBtn').on('click',function(){
+    console.log('sucess')
+    products.forEach(function(e){
+      console.log(e)
+      $('.goods').append(appendLi(e))
+    })
+  })
+  function appendLi(data){
+    return $('<li><img src='+data["img"]+'></img><p>'+data["name"]+'</p><p>'+data["price"]+'</p><div class="buyBtn"><a href="#">立即购买</a></div></li>')
+  }
+</script>
+</html>

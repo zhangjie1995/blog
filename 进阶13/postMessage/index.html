@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .ct1{
+      width: 49%;
+      height: 600px;
+      border: 1px solid;
+    }
+    .iframe {
+      width: 49%;
+      height: 600px;
+      border: 1px solid;
+    }
+    .ct {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+<div class="ct">
+  <div class="ct1">
+    <input id='a-input' type="text">
+  </div>
+  <iframe class='iframe' src="http://b.jrg.com:8080/b.html" frameborder="0"></iframe>
+</div>
+<script>
+  $('#a-input').addEventListener('input',function(){
+    console.log($('#a-input').value)
+    window.frames[0].postMessage(this.value,'*')
+  })
+  window.addEventListener('message',function(e){
+    $('#a-input').value = e.data
+  })
+  function $(id){
+    return document.querySelector(id)
+  }
+</script>
+</body>
+</html>

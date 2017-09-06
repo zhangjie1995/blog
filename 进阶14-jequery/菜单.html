@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .navi{
+      
+      list-style: none;
+      width: 200px;
+      margin: 0;
+      padding: 0;
+      background: #c7171e;
+    }
+    .navi .cate{
+      position: relative;
+    }
+    .navi>li>a{
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #fff;
+      border-bottom: 1px dotted red;
+    }
+    .content {
+      position: absolute;
+      left: 200px;
+      top: 0;
+      border: 1px solid #ccc;
+      list-style: none;
+      padding: 10px;
+      padding-left: 30px;
+      width: 200px;
+      display: none;
+    }
+    .content>li{
+      width: 100px;
+      float: left;
+    }
+    .content>li>a{
+      text-decoration: none;
+      color: #000;
+    }
+    .icon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #fff;
+    }
+    .hover .content{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <ul class="navi">
+    <li class="cate">
+      <a href="#">珠宝玉器</a>
+      <span class="icon">></span>
+      <ul class="content">
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
+      
+      </ul>
+    </li>
+    <li class="cate">
+      <a href="#">珠宝玉器</a>
+      <span class="icon">></span>
+      <ul class="content">
+        <li><a href="#">2</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">2</a></li>
+      </ul>
+    </li>
+    <li class="cate">
+      <a href="#">珠宝玉器</a>
+      <span class="icon">></span>
+      <ul class="content">
+        <li><a href="#">3</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">3</a></li>
+      </ul>
+    </li>
+  </ul>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+  $('.navi .cate').on('mouseenter',function(){
+    $(this).addClass('hover')
+  })
+  $('.navi .cate').on('mouseleave',function(){ 
+  //!!!!!!!!mouseout支持事件冒泡，也就是说每当离开子元素也会触发事件
+    $(this).removeClass('hover')
+  }) 
+</script>
+</body>
+
+</html>
