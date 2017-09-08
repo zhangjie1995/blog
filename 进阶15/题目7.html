@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 3px;
+    }
+    li:hover{
+      background: green;
+    }
+    .loadBtn {
+      display: block;
+      width: 80px;
+      margin: 0 auto;
+      border: 1px solid red;
+      border-radius: 3px;
+      padding: 10px;
+      color: red;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <ul class="news">
+    <li>内容1</li>
+    <li>内容2</li>
+    <li>内容3</li>
+  </ul>
+  <a href="#" class="loadBtn">加载更多</a>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js" ></script>
+<script>
+  var index = 0
+  $('.loadBtn').click(function(){
+    $.ajax({
+      url:'/getNews',
+      type:'get',
+      data: {page:index},
+    }).done(function(ret){
+       index += 3
+       console.log(index)
+       console.log(ret)
+      // console.log(index)
+       addNews(ret)
+    }).fail(function(){
+      alert('failed')
+    })
+  })
+  function addNews(data){
+    htmls = ''
+    for(var i=0;i<3;i++){
+      htmls += '<li>'+data[i]+'</li>'
+    }
+    $('.news').append($(htmls))
+  }
+</script>
+</html>
