@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    .ct {
+      position: relative;
+      width: 320px;
+      height: 180px;
+      overflow: hidden;
+    }
+    .imgs {
+      position: absolute;
+      z-index: -1;
+    }
+    .imgs>li{
+      float: left;
+      display: none;
+    }
+    .imgs>li.active {
+      display: block;
+    }
+    .imgs img {
+      width: 320px;
+      height: 180px;
+    }
+    .preBtn,.nextBtn {
+      position: absolute;
+      display: block;
+      line-height: 30px;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #fff;
+      border-radius: 15px;
+      color: #fff;
+      text-decoration: none;
+      top: 50%;
+      margin-top: -15px;
+    }
+    .preBtn {
+      left: 10px;
+    }
+    .nextBtn {
+      right: 10px;
+    }
+    .index {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      list-style: none;
+      text-align: center;
+    }
+    .index>li {
+      display: inline-block;
+      width: 30px;
+      height: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .index>li.active {
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <ul class="imgs">
+      <li class="active"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+      <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+      <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+      <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+    </ul>
+    <a class="preBtn" href="#"><</a>
+    <a class="nextBtn" href="#">></a>
+    <ul class="index">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var $preBtn = $('.preBtn')
+  var $nextBtn =$('.nextBtn')
+  var $imgs = $('.imgs')
+  var $img = $('.imgs>li')
+  var $index = $('.index>li')
+  var isAnimate = false
+  var index = 0
+  var numImg = $img.length
+
+  $preBtn.on('click',function(){
+    if(isAnimate) return;
+    play(index-1)
+  })
+  $nextBtn.on('click',function(){
+    if(isAnimate) return;
+    play(index+1)
+  })
+  $index.on('click',function(){
+    var tar = $(this).index()
+    play(tar)
+    $index.removeClass('active').eq(tar).addClass('active')
+  })
+  setInterval(function(){
+    play(index+1)
+  },2000)
+  function play(tar){
+    isAnimate = true
+    if(tar < 0){
+      $img.eq(0).fadeOut(500,'linear')
+      $img.eq(3).fadeIn(500)
+      index = 3
+      $index.removeClass('active').eq(index).addClass('active')
+      isAnimate = false
+    }else if(tar === numImg){
+      $img.eq(3).fadeOut(500)
+      $img.eq(0).fadeIn(500)
+      index = 0
+      $index.removeClass('active').eq(index).addClass('active')
+      isAnimate = false
+    }else{
+      $img.eq(index).fadeOut(300)
+      $img.eq(tar).fadeIn(300)
+      index = tar
+      $index.removeClass('active').eq(index).addClass('active')
+      isAnimate = false
+    }
+  }
+
+  
+</script>
+</html>

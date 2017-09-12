@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .ct {
+      list-style: none;
+      width: 600px;
+      margin: 0 auto;
+    }
+    .item {
+      margin-top: 20px;
+    }
+    .item a{
+      text-decoration: none;
+      color: #000;
+    }
+    .item img {
+      display: block;
+      width: 50px;
+      height: 50px;
+      float: left;
+    }
+    .item h2 {
+      margin: 0;
+      margin-left: 60px;
+      font-size: 14px;
+    }
+    .item p {
+      margin-left: 60px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <ul class="ct">
+    <li class="item">
+      <a href="#">
+        <img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt="">
+        <h2>xxxxxxxx</h2>
+        <p>xxxxxxxxx</p>
+      </a>
+    </li>
+  </ul>
+  <p class="load-more"></p>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var $load = $('.load-more')
+  var pageIndex = 0
+  var isArrive = true
+  var isOver = false
+  getNews()
+  $(window).on('scroll',function(){
+      console.log(pageIndex)
+      getNews()  
+  })
+  function getNews(){
+    var height = $load.offset().top
+    var visHeight = $(window).height()
+    var scroll = $(window).scrollTop()
+    if(height <=visHeight+scroll && !isOver && isArrive){
+      isArrive = false
+      $.ajax({
+        url:'/getNews',
+        type:'get',
+        data: {index : pageIndex}
+      }).done(function(ret){
+        isArrive = true
+        pageIndex++
+        appendHtml(ret.data)
+        getNews()
+      }).fail(function(){
+        alert('error')
+      })
+    }
+  }
+  function appendHtml(news){
+    console.log(news)
+    if(news.length === 0){
+      isOver = true;
+      $('body').append('<p>没有更多数据了~</p>')
+      return;
+    }
+    var htmls = '';
+    $.each(news, function(){
+      htmls += '<li class="item">';
+      htmls += '<a href="' + this.link + '">';
+      htmls += '<div class="thumb"> <img src="' + this.img +'"></div>';
+      htmls += '<h2>'+this.title+'</h2>';
+      htmls += '<p>'+this.brif+'</p>';
+      htmls += '</a></li>';
+    })
+
+    $('.ct').append(htmls);
+  }
+</script>
+</html>

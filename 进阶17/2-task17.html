@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    .ct {
+      position: relative;
+      width: 320px;
+      height: 180px;
+      overflow: hidden;
+    }
+    .imgs {
+      position: absolute;
+      left: -320px;
+      width: 1280px;
+      z-index: -1;
+    }
+    .imgs>li{
+      float: left;
+    }
+    .imgs img {
+      width: 320px;
+      height: 180px;
+    }
+    .preBtn,.nextBtn {
+      position: absolute;
+      display: block;
+      line-height: 30px;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #fff;
+      border-radius: 15px;
+      color: #fff;
+      text-decoration: none;
+      top: 50%;
+      margin-top: -15px;
+    }
+    .preBtn {
+      left: 10px;
+    }
+    .nextBtn {
+      right: 10px;
+    }
+    .index {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      list-style: none;
+      text-align: center;
+    }
+    .index>li {
+      display: inline-block;
+      width: 30px;
+      height: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .index>li.active {
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <ul class="imgs">
+      <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+      <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+      <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+      <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+    </ul>
+    <a class="preBtn" href="#"><</a>
+    <a class="nextBtn" href="#">></a>
+    <ul class="index">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var $preBtn = $('.preBtn')
+  var $nextBtn =$('.nextBtn')
+  var $imgs = $('.imgs')
+  var $img = $('.imgs>li')
+  var $index = $('.index>li')
+  var width = $img.width()
+  var isAnimate = false
+  var index = 0
+  $('.imgs').append($img.eq(0).clone()).prepend($img.last().clone()).css({width:'+='+(width*2)})
+
+  $preBtn.on('click',function(){
+    if(isAnimate) return;
+    prePlay(1)
+  })
+  $nextBtn.on('click',function(){
+    if(isAnimate) return;
+    nextPlay(1)
+  })
+  $index.on('click',function(){
+    var changeIndex = $(this).index() - index
+    console.log(changeIndex)
+    if(changeIndex>0){
+      nextPlay(changeIndex)
+    }else if(changeIndex<0){
+      prePlay(-changeIndex)
+    }
+  })
+  function prePlay(pages){
+    isAnimate = true
+    $imgs.animate({left:'+='+(width*pages)},function(){
+      index -= pages
+      if(index<0){
+        $imgs.css({left:-width*$img.length})
+        index = 3
+       
+      }
+       $index.removeClass('active').eq(index).addClass('active')
+      isAnimate = false
+    })
+  }
+  function nextPlay(pages){
+    isAnimate = true
+    $imgs.animate({left:'-='+(width*pages)},function(){
+      index += pages
+      if(index === $img.length){
+        $imgs.css({left:-width})
+        index = 0  
+      }
+      $index.removeClass('active').eq(index).addClass('active')
+      isAnimate = false
+    })
+  }
+</script>
+</html>
