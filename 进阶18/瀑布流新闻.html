@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .ct {
+      position: relative;
+      width: 900px;
+      margin: 0 auto;
+    }
+    .ct>li{
+      position: absolute;
+      width: 250px;
+      padding: 3px;
+      list-style: none;
+      box-shadow: 0 0 3px #000;
+      margin-left: 15px;
+      margin-top: 15px;
+    }
+    .ct>li img {
+      width: 250px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <ul class="ct">
+    <li></li>
+  </ul>
+  <div class="foot"></div>  
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script>
+  var $foot = $('.foot')
+  var $ct = $('.ct')
+  var colH = []
+  var rowW = $('.ct>li').outerWidth(true)
+  var colLength = parseInt($ct.width()/rowW)
+  var page = 0
+  var timeoutId
+  for(var i=0;i<colLength;i++){
+    colH[i] = 0
+  }
+  console.log(rowW)
+  loadNew()
+  $(window).scroll(function(){
+    if(timeoutId){
+      clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(function(){
+      if(isVisiable()){
+        loadNew()
+      }
+    },300)
+  })
+  function isVisiable(){
+    var winH = $(window).height()
+    var scroll = $(window).scrollTop()
+    var footH = $foot.offset().top
+    if(footH<scroll+winH){
+      return true
+    }
+    return false
+  }
+  function loadNew(){
+    $.ajax({
+      url: 'http://platform.sina.com.cn/slide/album_tech',
+      dataType: 'jsonp',
+      jsonp: 'jsoncallback',
+      data: {
+        app_key:'1271687855',
+        num: 8,
+        page: page
+      }
+    }).done(function(ret){
+      addNew(ret.data)
+      page++
+      console.log(page)
+    })
+  }
+  function addNew(newList){
+    $.each(newList,function(idx,news){
+      var $node = getNode(news)
+      
+      $ct.append($node)
+      waterPlace($node)
+    })
+  }
+  function getNode(news){
+    var html = ''
+    html += '<li>'
+    html += '<a href="'+news.url+'"><img src="'+news.img_url+'"></a>'
+    html += '<h4>'+news.short_name+'</h4>'
+    html += '<p>'+news.short_intro+'</p>'
+    html += '</li>'
+    return $(html)
+  }
+  function waterPlace(node){
+    var minH = Math.min.apply(null,colH)
+    var minIndex = colH.indexOf(minH)
+
+    node.css({
+        left: rowW*minIndex,
+        top: minH
+    })
+    colH[minIndex] += node.outerHeight(true)
+    $ct.css({
+      height:Math.max.apply(null,colH)
+    }) 
+  }
+  
+</script>
+</html>
