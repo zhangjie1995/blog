@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="ct">
+    <div class="img-ct"></div>
+  </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+  function Layout($ct){
+    this.$ct = $ct
+    this.img = 2
+  }
+  Layout.prototype = {
+    loadImg:function(num){
+      var html = '<img src="'+'http://via.placeholder.com/300x400/ccc'+'">'
+      $('.img-ct').append($(html))
+      this.appendImg()
+      console.log(this.img)
+    },appendImg:function(){
+      console.log('2')
+    }
+  }
+  new Layout($('.ct')).loadImg()
+</script>
+</html>

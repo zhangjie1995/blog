@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+
+    .img-ct {
+      width:800px;
+      margin: 0 auto;
+      font-size: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <div class="img-ct">
+    </div>
+  </div>
+</body>
+<script>
+  function Layout($ct){
+    this.$ct = $ct
+    this.curRow = []
+    this.rowWidth = document.querySelector('.img-ct').offsetWidth  
+  }
+  Layout.prototype = {
+      loadImg:function(num){
+        var _this = this
+        for(var i=0;i<num;i++){
+          var imgWidth = Math.floor(Math.random()*100)+50
+          var imgHeight = Math.floor(Math.random()*100)+50
+          var imgColor = Math.random().toString(16).substring(2,8)
+          var img = document.createElement('img')
+          img.src = 'http://via.placeholder.com/'+imgWidth+'x'+imgHeight+'/'+imgColor
+          console.log('imgWidth:'+imgWidth)
+          img.addEventListener('load',function(e){
+            console.log(this.width)
+            this.setAttribute('width',this.width*200/this.height) 
+            this.setAttribute('height',200) 
+            console.log('imgOffsetWidht:'+this.width)
+            _this.curRow.push(this)
+            _this.appendImg()  
+          })
+        }
+      },
+      appendImg:function(){
+        var _this = this
+        var sumWidth = 0
+        console.log(_this.curRow)
+        for(var i=0;i<_this.curRow.length;i++){
+          sumWidth += _this.curRow[i].width
+        }
+        console.log('sumWidth22222: '+sumWidth)
+        if(sumWidth>_this.rowWidth){
+          var newLine = _this.curRow[_this.curRow.length-1]
+          _this.curRow.pop()
+          _this.layout(_this.curRow)
+          _this.curRow = [newLine]
+        }
+      },
+      layout:function(imgList){
+        console.log('dss')
+        var curRow = imgList
+        var _this = this
+        var sumWidth = 0
+        var newRow = document.createElement('div')
+        newRow.classList.add('img-ct')
+        for(var i=0;i<curRow.length;i++){
+          sumWidth += curRow[i].width
+        }
+        var multi = _this.rowWidth/sumWidth
+        for(var i=0;i<curRow.length;i++){
+          curRow[i].width *= multi
+          curRow[i].height *= multi
+          console.log(curRow[i])
+          newRow.appendChild(curRow[i])
+        }
+        document.querySelector('.ct').appendChild(newRow)
+      }
+    }
+  $ct = document.querySelector('.ct')
+
+  var func = new Layout($ct)
+  console.log(func.rowWidth)
+  func.loadImg(10)
+
+</script>
+</html>
