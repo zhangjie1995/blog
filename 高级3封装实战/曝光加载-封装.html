@@ -63,14 +63,16 @@
     this.bindFunction()
   }
   Exposure.prototype.bindFunction = function(){
-    var _this = this
+    var _this = this 
+    if(_this.isVisable()){
+        _this.callback(_this.$ele)
+    }
     $(window).on('scroll',function(){
       if(_this.timoutID){
         window.clearTimeout(_this.timoutID) 
       }
       _this.timoutID = window.setTimeout(function(){
                     if(_this.isVisable()){
-
                       _this.callback(_this.$ele)
                     }else {
 
