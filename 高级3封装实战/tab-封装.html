@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul,li {
+      list-style: none;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .ct {
+      width: 600px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 3px;  
+      margin-top: 40px;
+      height: 200px;
+    }
+    .tabList>li {
+      float: left;
+      border-bottom: 1px solid #ccc;
+      color: red;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .tabList .active {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      color: #000;
+      border-bottom: none;
+    }
+    .content>li {
+      display: none;
+    }
+    .content .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <ul class="tabList clearfix">
+      <li class="active">选项1</li>
+      <li>选项2</li>
+      <li>选项3</li>
+      <li>选项4</li>
+    </ul>
+    <ul class="content">
+      <li class="active">内容1</li>
+      <li>内容2</li>
+      <li>内容3</li>
+      <li>内容4</li>
+    </ul>
+  </div>
+  <div class="ct">
+      <ul class="tabList clearfix">
+        <li class="active">选项1</li>
+        <li>选项2</li>
+        <li>选项3</li>
+        <li>选项4</li>
+      </ul>
+      <ul class="content">
+        <li class="active">内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+        <li>内容4</li>
+      </ul>
+    </div>
+</body>
+<script>
+  function Tab(ct){
+    this.ct = ct
+    this.init()
+    this.bindTab()
+
+  }
+  Tab.prototype.init = function(){
+    this.tabs = this.ct.querySelectorAll('.tabList>li')
+    this.content = this.ct.querySelectorAll('.content>li')
+  }
+  Tab.prototype.bindTab = function(){
+    var _this = this
+    this.tabs.forEach(function(tab){
+      tab.addEventListener('click',function(e){
+        var target = e.target
+        var index = [].indexOf.call(_this.tabs,target)
+
+        _this.tabs.forEach(function(tab){
+          tab.classList.remove('active')
+        })
+        _this.content.forEach(function(content){
+          content.classList.remove('active')
+        })
+
+        _this.tabs[index].classList.add('active')
+        _this.content[index].classList.add('active')
+      })
+    })
+  }
+  new Tab(document.querySelectorAll('.ct')[0])
+  new Tab(document.querySelectorAll('.ct')[1])
+</script>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul,li {
+      margin: 0;
+      padding: 0;
+    }
+    .ct {
+      position: relative;
+      width: 320px;
+      height: 180px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .imgs {
+      position: absolute;
+      list-style: none;
+      width: 1280px;
+      left: -320px;
+      z-index: -1;
+    }
+    .imgs>li {
+      float: left;
+    }
+    .imgs img {
+      width: 320px;
+      height: 180px;
+    }
+    .preBtn,.nextBtn {
+      position: absolute;
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      border: 1px solid #fff;
+      top: 50%;
+      margin-top: -15px;
+    }
+    .preBtn {
+      left: 10px;
+    }
+    .nextBtn {
+      right: 10px;
+    }
+    .index {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      transform: translate(-50%)
+    }
+    .index>li {
+      margin: 0 5px;
+      float: left;
+      list-style: none;
+      background: #fff;
+      width: 20px;
+      height: 10px;
+      border-radius: 3px;
+    }
+    .index .active {
+      background: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <ul class="imgs">
+      <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+      <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+      <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+      <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+    </ul>
+    <a class="preBtn" href="#"><</a>
+    <a class="nextBtn" href="#">></a>
+    <ul class="index">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.9.0/jquery.js"></script>
+<script>
+  function Carousel($ct){
+    this.$ct = $ct
+    this.init()
+    this.bindFunction()
+  }
+  Carousel.prototype.init = function(){
+    var $imgCt = this.$imgCt = this.$ct.find('.imgs')
+        $preBtn = this.$preBtn = this.$ct.find('.preBtn')
+        $nextBtn = this.$nextBtn = this.$ct.find('.nextBtn')
+        $index = this.$index = this.$ct.find('.index')
+    
+    var $firstImg = this.$firstImg = $imgCt.find('li').first()
+        $lastImg = this.$lastImg =$imgCt.find('li').last()
+
+    this.curIndex = 0
+    this.imgCount = $imgCt.children().length
+    this.isAnimate = false
+
+    $imgCt.prepend($lastImg.clone())
+    $imgCt.append($firstImg.clone())
+
+    $imgCt.width($firstImg.width()*$imgCt.children().length)
+    $imgCt.css({
+      left: '-320px'
+    })
+  }
+  Carousel.prototype.bindFunction = function(){
+    var _this = this
+    this.$preBtn.on('click',function(e){
+      e.preventDefault()
+      _this.playPre()
+    })
+    
+    this.$nextBtn.on('click',function(e){
+      e.preventDefault()
+      _this.playNext()
+    })
+  }
+  Carousel.prototype.playPre = function(){
+    var _this = this
+    if(this.isAnimate) return ;
+
+    this.isAnimate = true
+    this.$imgCt.animate({
+      left:'+=320px'
+    },function(){
+      _this.curIndex--
+      if(_this.curIndex < 0){
+        _this.$imgCt.css('left',-(_this.imgCount* _this.$firstImg.width()))
+        _this.curIndex = _this.imgCount - 1
+      }
+      _this.isAnimate = false
+      _this.setBullet()
+    })
+
+  }
+  Carousel.prototype.playNext = function(){
+    var _this = this
+    if(this.isAnimate) return;
+
+    this.isAnimate = true
+    this.$imgCt.animate({
+      left:'-=320px'
+    },function(){
+      _this.curIndex++
+      if(_this.curIndex === _this.imgCount){
+        _this.$imgCt.css('left','-320px')
+        _this.curIndex = 0
+      } 
+      _this.isAnimate = false
+      _this.setBullet()
+    })
+  
+  }
+  Carousel.prototype.setBullet = function(){
+    this.$index.children().removeClass('active')
+                          .eq(this.curIndex).addClass('active')
+    console.log(this.curIndex)
+  }
+
+  new Carousel($('.ct'))
+</script>
+</html>
