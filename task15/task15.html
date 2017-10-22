@@ -499,15 +499,17 @@
 	</div>
 </div>
 </body>
-<script src="js/lib/require.js"></script>
+<!-- <script src="js/lib/require.js"></script> -->
+<script src="https://cdn.bootcss.com/jquery/1.9.0/jquery.js"></script>
+<script src="./js/app/bundle.js"></script>
 <script>
-  requirejs.config({
-    baseUrl:"js/app",
-    paths: {
-      "jquery":"http://cdn.bootcss.com/jquery/1.9.1/jquery"
-    }
-  })
+  // requirejs.config({
+  //   baseUrl:"js/app",
+  //   paths: {
+  //     "jquery":"http://cdn.bootcss.com/jquery/1.9.1/jquery"
+  //   }
+  // })
 
-  require(['test'])
+  // require(['test'])
 </script>
 </html>
