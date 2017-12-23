@@ -60,7 +60,7 @@ $('.footer .forward').addEventListener('click',function(){
 })
 function getChannelList(){
   var xhr = new XMLHttpRequest()
-  xhr.open('GET','http://api.jirengu.com/fm/getChannels.php');
+  xhr.open('GET','https://jirenguapi.applinzi.com/fm/getChannels.php');
   xhr.onload = function(){
     if((xhr.status >= 200 && xhr.status<300) || xhr.status === 304){
       var data = JSON.parse(xhr.responseText)['channels']
@@ -98,7 +98,7 @@ function getChannelList(){
 }
 function getRandSong(){
   var xhr = new XMLHttpRequest();
-  xhr.open('GET','http://api.jirengu.com/fm/getSong.php?channel='+window.channelID);
+  xhr.open('GET','https://jirenguapi.applinzi.com/fm/getSong.php?channel='+window.channelID);
   xhr.onload = function(){
     if((xhr.status >= 200 && xhr.status < 300)|| xhr.status == 304){
       var songInf = JSON.parse(xhr.responseText)['song'][0];
