@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .musicbox {
+        border: 1px solid green;
+        width: 340px;
+        color: #f06d6a;
+        text-align: center;
+        padding: 20px;
+      }
+      .controlBar {
+        float: left;
+        margin-top: 20px;
+        font-size: 22px;
+      }
+      .musicInfo .title {
+        font-size: 20px;
+      }
+      .progressBar {
+        position: relative;
+        margin-top: 5px;
+        height: 5px;
+        width: 100%;
+        background-color: #ccc;
+      }
+      .progress-now {
+        width: 30px;
+        height: 5px;
+        background-color: red;
+      }
+    </style>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_361483_3z3o7xocvqk9be29.css">
+  </head>
+  <body>
+    <div class="musicbox">
+      <div class="controlBar">
+        <span class="back"><i class="iconfont icon-icon-prev-song"></i></span>
+        <span class="play"><i class="iconfont icon-bofangqizanting"></i></span>
+        <span class="forward"><i class="iconfont icon-bofangqixiashou"></i></span>
+      </div>
+      <div class="musicInfo">
+        <div class="title">my Song</div>
+        <div class="author">ruoyu</div>
+      </div>
+      <div class="progressBar">
+        <div class="progress-total"></div>
+        <div class="progress-now"></div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var musicList = [];
+    var progress = $('.progressBar');
+    var progressNow = $('.progress-now');
+    var play = $('.play');
+    var back = $('.back');
+    var forward = $('.forward');
+
+
+    var music = new Audio();
+    music.autoplay = true;
+    var musicIndex = 0;
+    music.shouldUpdate = true;
+    var channelId = "public_tuijian_spring";
+
+    ///第一次获取随机歌曲
+    var data = 'channel='+ channelId
+
+    getRandSong();
+
+
+    //播放控制台点击事件
+    //播放or暂停
+    play.addEventListener('click',function(){
+      var icon = this.querySelector('.iconfont');
+      if(icon.classList.contains('icon-bofangqizanting')){
+        music.pause();
+      }else {
+        music.play();
+      }
+      icon.classList.toggle('icon-bofangqibofang');
+      icon.classList.toggle('icon-bofangqizanting');
+    })
+    //前一首
+    back.addEventListener('click',function(){
+      if(musicIndex>0){
+        loadMusic(musicList[--musicIndex]);
+      }else {
+        musicIndex = 0;
+        getRandSong();
+      }
+    })
+    //后一首
+    forward.addEventListener('click',function(){
+      if(musicIndex<musicList.length-1){
+        loadMusic(musicList[++musicIndex]);
+      }else {
+        musicIndex++;
+        getRandSong('append')
+      }
+    })
+
+    //播放进度自动更新事件
+    music.ontimeupdate = function(){
+      var _this = this
+      if( _this.shouldUpdate) {
+        var percent = music.currentTime/music.duration*100;
+        progressNow.style.width = percent +'%';
+        _this.shouldUpdate = false;
+        setTimeout('music.shouldUpdate = true', 1000)
+      }
+    }
+    //播放进度条点击事件
+    progress.addEventListener('click',function(e){
+      var percent = e.offsetX/parseInt(getComputedStyle(this).width);
+      music.currentTime = music.duration * percent
+      progressNow.style.width = percent*100+ '%';
+    })
+
+    function $(ele){
+      return document.querySelector(ele);
+    }
+    //随机获取一首歌曲信息
+    function getRandSong(str){
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET','http://api.jirengu.com/fm/getSong.php',true)
+      xhr.onload = function(){
+        if((xhr.status >= 200 && xhr.status < 300)||xhr.status === 304){
+          if(str === 'append'){
+            musicList.push(JSON.parse(xhr.responseText)['song'][0]);
+          }else {
+            musicList.unshift(JSON.parse(xhr.responseText)['song'][0]);
+          }
+          loadMusic(musicList[musicIndex]);
+        }
+      }
+      xhr.send(data);
+    }
+    //更新播放信息
+    function loadMusic(songObj){
+      music.src = songObj.url;
+      $('.title').innerText = songObj.title;
+      $('.author').innerText = songObj.artist;
+    }
+  </script>
+</html>
