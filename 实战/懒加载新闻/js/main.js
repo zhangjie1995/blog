@@ -6,13 +6,13 @@ var page = 1;
 
 
 var script = document.createElement('script');
-script.src = 'http://platform.sina.com.cn/slide/album_tech?jsoncallback=func&app_key=1271687855&num=8&page=4';
+script.src = 'https://platform.sina.com.cn/slide/album_tech?jsoncallback=func&app_key=1271687855&num=8&page=4';
 document.body.appendChild(script);
 
 window.addEventListener('scroll',function(){
 	if (isVisiable()) {
 		var script = document.createElement('script');
-		script.src = 'http://platform.sina.com.cn/slide/album_tech?jsoncallback=func&app_key=1271687855&num=8&page='+ page;
+		script.src = 'https://platform.sina.com.cn/slide/album_tech?jsoncallback=func&app_key=1271687855&num=8&page='+ page;
 		document.body.appendChild(script);
 	}
 })
@@ -33,7 +33,7 @@ function appendNews(newsInfo){
 		newLi.querySelector('img').addEventListener('load',function(){
 			waterFall(newLi);
 		})
-		
+
 	})
 }
 
